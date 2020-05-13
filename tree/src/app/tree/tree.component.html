@@ -1,48 +1,37 @@
 <div class="container w-70">
     <form action="">
-        <table class="table">
-            <tr class="row">
-                <th class="col-3">
-                    Tree
-                </th>
-                <th class="col-3">
-                    ID
-                </th>
-                <th class="col-3">
-                    Name
-                </th>
-                <th class="col-3">
-                    #children
-                </th>
-            </tr>
-            <app-row [depth]="depth" [nodes]="nodes" [template]="linhas">
-            </app-row>
+        <table class="table table-hover">
+            <thead>
+                <tr class="row">
+                    <th class="col-3">
+                        Tree
+                    </th>
+                    <th class="col-3">
+                        ID
+                    </th>
+                    <th class="col-3">
+                        Name
+                    </th>
+                    <th class="col-3">
+                        #children
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <app-row [depth]="depth" [nodes]="nodes" [template]="linhas">
+                </app-row>
+            </tbody>
         </table>
     </form>
     <ng-template #linhas let-d="depth" let-n="node" let-s="show">
         <tr class="row">
-            <td class="col-3" [ngStyle]="{'padding-left':(d*20)+'px'}" (click)="s.visible = !s.visible">
-                <span *ngIf="n.children">
-                    <svg *ngIf="!s.visible" class="bi bi-plus-square-fill" width="1em" height="1em" viewBox="0 0 16 16"
-                        fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd"
-                            d="M2 0a2 2 0 00-2 2v12a2 2 0 002 2h12a2 2 0 002-2V2a2 2 0 00-2-2H2zm6.5 4a.5.5 0 00-1 0v3.5H4a.5.5 0 000 1h3.5V12a.5.5 0 001 0V8.5H12a.5.5 0 000-1H8.5V4z"
-                            clip-rule="evenodd" />
-                    </svg>
-
-                    <svg *ngIf="s.visible" class="bi bi-dash-square-fill" width="1em" height="1em" viewBox="0 0 16 16"
-                        fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd"
-                            d="M2 0a2 2 0 00-2 2v12a2 2 0 002 2h12a2 2 0 002-2V2a2 2 0 00-2-2H2zm2 7.5a.5.5 0 000 1h8a.5.5 0 000-1H4z"
-                            clip-rule="evenodd" />
-                    </svg>
+            <td class="col-3" [ngStyle]="{'padding-left':(d*20)+'px'}">
+                <span *ngIf="n.children" (click)="s.visible = !s.visible">
+                    <fa-icon *ngIf="!s.visible" [icon]="faPlusSquare"></fa-icon>
+                    <fa-icon *ngIf="s.visible" [icon]="faMinusSquare"></fa-icon>
                 </span>
                 <span *ngIf="!n.children">
-                    <svg class="bi bi-caret-right-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path
-                            d="M12.14 8.753l-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 011.659-.753l5.48 4.796a1 1 0 010 1.506z" />
-                    </svg>
+                    <fa-icon [icon]="faChevronRight"></fa-icon>
                 </span>
                 {{n.name}}
             </td>
