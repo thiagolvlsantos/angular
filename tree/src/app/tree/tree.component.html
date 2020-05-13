@@ -15,13 +15,13 @@
                     #children
                 </th>
             </tr>
-            <app-row [nodes]="[{'id':0,'name':'Topo','children':nodes}]" [template]="linhas">
+            <app-row [depth]="depth" [nodes]="nodes" [template]="linhas">
             </app-row>
         </table>
     </form>
-    <ng-template #linhas let-depth="depth" let-n="node" let-s="show">
+    <ng-template #linhas let-d="depth" let-n="node" let-s="show">
         <tr class="row">
-            <td class="col-3" [ngStyle]="{'padding-left':(depth*10)+'px'}" (click)="s.visible = !s.visible">
+            <td class="col-3" [ngStyle]="{'padding-left':(d*20)+'px'}" (click)="s.visible = !s.visible">
                 <span *ngIf="n.children">
                     <svg *ngIf="!s.visible" class="bi bi-plus-square-fill" width="1em" height="1em" viewBox="0 0 16 16"
                         fill="currentColor" xmlns="http://www.w3.org/2000/svg">
