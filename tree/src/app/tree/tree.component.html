@@ -26,24 +26,24 @@
             <td class="col-3" [ngStyle]="{'padding-left':(d*20)+'px'}">
                 <div class="row">
                     <div class="col">
-                        <span *ngIf="children(n)" (click)="s.visible = !s.visible">
-                            <fa-icon *ngIf="!s.visible" [icon]="faChevronDown"></fa-icon>
-                            <fa-icon *ngIf="s.visible" [icon]="faChevronUp"></fa-icon>
+                        <span *ngIf="children(n)" (click)="s.visible = !s.visible" style="cursor:pointer">
+                            <fa-icon *ngIf="!s.visible" [icon]="['fas','chevron-down']"></fa-icon>
+                            <fa-icon *ngIf="s.visible" [icon]="['fas','chevron-up']"></fa-icon>
                             &nbsp;
-                            <fa-icon *ngIf="!s.visible" [icon]="faFolder"></fa-icon>
-                            <fa-icon *ngIf="s.visible" [icon]="faFolderOpen"></fa-icon>
+                            <fa-icon *ngIf="!s.visible" [icon]="['fas','folder']"></fa-icon>
+                            <fa-icon *ngIf="s.visible" [icon]="['fas','folder-open']"></fa-icon>
                             <!--fa-icon *ngIf="!s.visible" [icon]="faPlusSquare"></fa-icon>
                             <fa-icon *ngIf="s.visible" [icon]="faMinusSquare"></fa-icon-->
                         </span>
                         <span *ngIf="!children(n)">
-                            <fa-icon [icon]="faChevronRight"></fa-icon>
+                            <fa-icon [icon]="['fas','chevron-right']"></fa-icon>
                         </span>
                         {{n.name}}
                     </div>
                     <div class="col text-right">
                         <div ngbDropdown class="d-inline-block">
                             <button class="btn btn-outline-secondary" id="controls" ngbDropdownToggle type="button">
-                                <fa-icon [icon]="faCog"></fa-icon>
+                                <fa-icon [icon]="['fas','cog']"></fa-icon>
                             </button>
                             <div ngbDropdownMenu aria-labelledby="controls">
                                 <button ngbDropdownItem type="button" (click)="siblingBefore(n)">Sibling before</button>
@@ -55,7 +55,7 @@
                     </div>
                 </div>
             </td>
-            <td class="col-3" style="background-color:aquamarine;" (click)="s.visible = !s.visible">
+            <td class="col-3" style="background-color:aquamarine;cursor:pointer;" (click)="s.visible = !s.visible">
                 {{n.id}}
             </td>
             <td class="col-3">

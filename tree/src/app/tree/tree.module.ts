@@ -1,10 +1,13 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { FaIconLibrary, FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+//import { faChevronDown, faChevronRight, faChevronUp, faCog, faFolder, faFolderOpen, faMinusSquare, faPlus, faPlusSquare } from '@fortawesome/free-solid-svg-icons';
+import { fas } from '@fortawesome/free-solid-svg-icons';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RowComponent } from './row/row.component';
 import { TreeComponent } from './tree.component';
+
 
 @NgModule({
   declarations: [
@@ -24,4 +27,9 @@ import { TreeComponent } from './tree.component';
     FontAwesomeModule
   ]
 })
-export class TreeModule { }
+export class TreeModule {
+  constructor(library: FaIconLibrary) {
+    //library.addIcons(faChevronDown, faChevronRight, faChevronUp, faCog, faFolder, faFolderOpen, faMinusSquare, faPlus, faPlusSquare);
+    library.addIconPacks(fas);
+  }
+}
