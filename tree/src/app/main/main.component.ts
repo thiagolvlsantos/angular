@@ -31,6 +31,10 @@ export class MainComponent implements OnInit {
     }
   ];
 
+  children = (n: any) => {
+    return n.children;
+  }
+
   constructor() { }
 
   ngOnInit(): void {

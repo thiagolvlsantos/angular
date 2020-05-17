@@ -7,13 +7,19 @@ import { Component, Input, OnInit, TemplateRef } from '@angular/core';
 })
 export class RowComponent implements OnInit {
 
-  @Input() nodes = [];
-  @Input() depth = 0;
+  @Input() depth: number = 0;
+  @Input() path: any[] = [];
+  @Input() nodes: any[] = [];
+  @Input() children: (n: any) => any[];
   @Input() label: TemplateRef<any>;
   @Input() template: TemplateRef<any>;
 
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  add(n: any) {
+    return [...this.path, n];
   }
 }

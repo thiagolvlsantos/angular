@@ -1,6 +1,7 @@
 <ng-container *ngFor="let n of nodes; let i = index">
     <span #show></span>
     <ng-container *ngTemplateOutlet="template; context: {'depth': depth, 'node': n, 'show': show}"></ng-container>
-    <app-row *ngIf="n.children && show.visible" [depth]="depth+1" [nodes]="n.children" [template]="template">
+    <app-row *ngIf="children(n) && show.visible" [path]="add(n)" [depth]="depth+1" [nodes]="children(n)"
+        [children]="children" [template]="template">
     </app-row>
 </ng-container>

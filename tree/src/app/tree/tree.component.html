@@ -1,39 +1,59 @@
 <div class="container w-70">
-    <form action="">
-        <table class="table table-hover">
-            <thead>
-                <tr class="row">
-                    <th class="col-3">
-                        Tree
-                    </th>
-                    <th class="col-3">
-                        ID
-                    </th>
-                    <th class="col-3">
-                        Name
-                    </th>
-                    <th class="col-3">
-                        #children
-                    </th>
-                </tr>
-            </thead>
-            <tbody>
-                <app-row [depth]="depth" [nodes]="nodes" [template]="linhas">
-                </app-row>
-            </tbody>
-        </table>
-    </form>
+    <table class="table table-hover">
+        <thead>
+            <tr class="row">
+                <th class="col-3">
+                    Tree
+                </th>
+                <th class="col-3">
+                    ID
+                </th>
+                <th class="col-3">
+                    Name
+                </th>
+                <th class="col-3">
+                    #children
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <app-row [depth]="depth" [nodes]="nodes" [children]="children" [template]="linhas">
+            </app-row>
+        </tbody>
+    </table>
     <ng-template #linhas let-d="depth" let-n="node" let-s="show">
         <tr class="row">
             <td class="col-3" [ngStyle]="{'padding-left':(d*20)+'px'}">
-                <span *ngIf="n.children" (click)="s.visible = !s.visible">
-                    <fa-icon *ngIf="!s.visible" [icon]="faPlusSquare"></fa-icon>
-                    <fa-icon *ngIf="s.visible" [icon]="faMinusSquare"></fa-icon>
-                </span>
-                <span *ngIf="!n.children">
-                    <fa-icon [icon]="faChevronRight"></fa-icon>
-                </span>
-                {{n.name}}
+                <div class="row">
+                    <div class="col">
+                        <span *ngIf="children(n)" (click)="s.visible = !s.visible">
+                            <fa-icon *ngIf="!s.visible" [icon]="faChevronDown"></fa-icon>
+                            <fa-icon *ngIf="s.visible" [icon]="faChevronUp"></fa-icon>
+                            &nbsp;
+                            <fa-icon *ngIf="!s.visible" [icon]="faFolder"></fa-icon>
+                            <fa-icon *ngIf="s.visible" [icon]="faFolderOpen"></fa-icon>
+                            <!--fa-icon *ngIf="!s.visible" [icon]="faPlusSquare"></fa-icon>
+                            <fa-icon *ngIf="s.visible" [icon]="faMinusSquare"></fa-icon-->
+                        </span>
+                        <span *ngIf="!children(n)">
+                            <fa-icon [icon]="faChevronRight"></fa-icon>
+                        </span>
+                        {{n.name}}
+                    </div>
+                    <div class="col text-right">
+                        <div ngbDropdown class="d-inline-block">
+                            <button class="btn btn-outline-secondary" id="controls" ngbDropdownToggle type="button">
+                                <fa-icon [icon]="faCog"></fa-icon>
+                            </button>
+                            <div ngbDropdownMenu aria-labelledby="controls">
+                                <button ngbDropdownItem type="button" (click)="siblingBefore(n)">Sibling before</button>
+                                <button ngbDropdownItem type="button" (click)="siblingAfter(n)">Sibling after</button>
+                                <button ngbDropdownItem type="button" (click)="childStart(n)">Child start</button>
+                                <button ngbDropdownItem type="button" (click)="childEnd(n)">Child end</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </td>
             <td class="col-3" style="background-color:aquamarine;" (click)="s.visible = !s.visible">
                 {{n.id}}
@@ -45,7 +65,8 @@
                     [size]="n.name.length" class="form-control" type="text" name="n.id" [(ngModel)]="n.name" />
             </td>
             <td class="col-3">
-                {{n.children?n.children.length:0}}
+                {{children(n)?children(n).length:0}}
+                {{path | json}}
             </td>
         </tr>
     </ng-template>
