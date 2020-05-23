@@ -25,12 +25,14 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { SchematicRoutingModule } from './schematics-routing.module';
 import { TableComponent } from './table/table.component';
 import { TreeComponent } from './tree/tree.component';
+import { TreetableComponent } from './treetable/treetable.component';
 
 const components = [
   NavbarComponent,
   AddressComponent,
   TableComponent,
   TreeComponent,
+  TreetableComponent,
   DashboardComponent,
   DragDropComponent
 ]

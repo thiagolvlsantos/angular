@@ -1,0 +1,53 @@
+<table class="w70">
+  <thead>
+    <tr class="border">
+      <th class="w50">Node</th>
+      <th class="w30">Name</th>
+      <th class="w10">Height</th>
+      <th class="w10">Descendants</th>
+    </tr>
+  </thead>
+</table>
+<mat-tree [dataSource]="dataSource" [treeControl]="treeControl">
+  <mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle>
+    <table class="w70">
+      <tbody>
+        <tr class="border">
+          <td class="w50 pointer" [ngStyle]="{'padding-left':gap(node)}">
+            <button mat-icon-button disabled></button>
+            <mat-icon class=" type-icon" [attr.aria-label]="node.type + 'icon'">
+              {{ node.type === 'file' ? 'description' : 'folder' }}
+            </mat-icon>
+            {{node.name}}
+          </td>
+          <td class="w30">{{node.name}}</td>
+          <td class="w10">{{treeControl.getLevel(node)}}</td>
+          <td class="w10">{{treeControl.getDescendants(node).length}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </mat-tree-node>
+
+  <mat-tree-node *matTreeNodeDef="let node; when: hasChild">
+    <table class="w70">
+      <tbody>
+        <tr class="border">
+          <td class="w50 pointer" matTreeNodeToggle [ngStyle]="{'padding-left':gap(node)}">
+            <button mat-icon-button [attr.aria-label]="'toggle ' + node.name">
+              <mat-icon class="mat-icon-rtl-mirror">
+                {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
+              </mat-icon>
+            </button>
+            <mat-icon class="type-icon" [attr.aria-label]="node.type + 'icon'">
+              {{ node.type ==='file' ? 'description' : 'folder' }}
+            </mat-icon>
+            {{node.name}}
+          </td>
+          <td class="w30">{{node.name}}</td>
+          <td class="w10">{{treeControl.getLevel(node)}}</td>
+          <td class="w10">{{treeControl.getDescendants(node).length}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </mat-tree-node>
+</mat-tree>

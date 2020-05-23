@@ -6,6 +6,7 @@ import { DragDropComponent } from './drag-drop/drag-drop.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { TableComponent } from './table/table.component';
 import { TreeComponent } from './tree/tree.component';
+import { TreetableComponent } from './treetable/treetable.component';
 
 const routes: Routes = [
   {
@@ -23,6 +24,9 @@ const routes: Routes = [
     }, {
       path: 'tree',
       component: TreeComponent
+    }, {
+      path: 'treetable',
+      component: TreetableComponent
     }, {
       path: 'drag-drop',
       component: DragDropComponent
