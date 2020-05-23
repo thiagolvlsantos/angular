@@ -32,7 +32,7 @@
     <table class="w70">
       <tbody>
         <tr class="border">
-          <td class="w50 pointer" matTreeNodeToggle [ngStyle]="{'padding-left':gap(node)}">
+          <td class="w50 pointer" matRipple matTreeNodeToggle [ngStyle]="{'padding-left':gap(node)}">
             <button mat-icon-button [attr.aria-label]="'toggle ' + node.name">
               <mat-icon class="mat-icon-rtl-mirror">
                 {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
@@ -43,7 +43,9 @@
             </mat-icon>
             {{node.name}}
           </td>
-          <td class="w30">{{node.name}}</td>
+          <td class="w30">
+            {{node.name}}
+          </td>
           <td class="w10">{{treeControl.getLevel(node)}}</td>
           <td class="w10">{{treeControl.getDescendants(node).length}}</td>
         </tr>
